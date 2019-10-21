@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <q-table title="Students" :data="students" :columns="columns">
+    <q-table title="Students" :data="academicYears" :columns="columns">
       <template v-slot:top>
         <q-btn flat dense color="primary" label="Agregar" @click="addRow(0)" />
         <q-space />
@@ -12,15 +12,7 @@
       </template>
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="nombre" :props="props">{{ props.row.nombre }}</q-td>
-          <q-td key="apellido" :props="props">{{ props.row.apellido }}</q-td>
-          <q-td key="foto" :props="props">
-            <q-img
-              :src="props.row.foto"
-              spinner-color="white"
-              style="height: 140px; max-width: 150px"
-            />
-          </q-td>
+          <q-td key="nombre">{{ props.row.nombre }}</q-td>
           <q-td>
             <q-btn-group>
               <q-btn color="green" @click="addRow(props.row.id)">Editar</q-btn>
@@ -34,28 +26,17 @@
 </template>
 <script>
 export default {
-  name: "StudentList",
+  name: "AcademicYearList",
   data() {
     return {
       filter: "",
-      students: [],
+      academicYears: [],
       columns: [
         {
-          name: "nombre",
-          label: "Nombre",
+          name: "Año",
+          label: "Año",
           field: "nombre",
           sortable: true
-        },
-        {
-          name: "apellido",
-          label: "Apellido",
-          field: "apellido",
-          sortable: true
-        },
-        {
-          name: "foto",
-          label: "Foto",
-          field: "foto"
         },
         {
           name: "opciones",
@@ -66,26 +47,26 @@ export default {
     };
   },
   created() {
-    this.getStudents();
+    this.getAcademicYears();
   },
   methods: {
-    getStudents() {
+    getAcademicYears() {
       this.$axios
-        .get("http://localhost:8080/alumnos")
+        .get("http://localhost:8080/anios")
         .then(response => {
-          this.students = response.data;
+          this.academicYears = response.data;
         })
         .catch(error => {
           console.error(error);
         });
     },
     addRow(id) {
-      this.$store.commit("notas/updateShowStudentForm", { id });
-      this.$store.commit("notas/updateShowStudentList");
+      this.$store.commit("notas/updateShowAcademicYearForm", { id });
+      this.$store.commit("notas/updateShowAcademicYearList");
     },
     deleteRow(id) {
       this.$axios
-        .delete(`http://localhost:8080/alumnos/${id}`)
+        .delete(`http://localhost:8080/anios/${id}`)
         .then(response => {
           console.log(response);
         })
@@ -96,3 +77,4 @@ export default {
   }
 };
 </script>
+<style lang="stylus"></style>
