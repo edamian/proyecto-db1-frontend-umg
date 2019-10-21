@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <h3>Student form</h3>
+    <h3>Alumno</h3>
     <q-form class="q-gutter-md">
       <q-input outlined v-model="student.nombre" label="Nombres" />
       <q-input outlined v-model="student.apellido" label="Apellidos" />
@@ -15,25 +15,25 @@
 </template>
 <script>
 export default {
-  name: 'StudentForm',
+  name: "StudentForm",
   data() {
     return {
       student: {
         id: 0,
         foto:
-          'https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg',
-        nombre: '',
-        apellido: '',
-        contactoEmergencia: '',
-      },
+          "https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg",
+        nombre: "",
+        apellido: "",
+        contactoEmergencia: ""
+      }
     };
   },
   computed: {
     id: {
       get() {
         return this.$store.state.notas.studentToEdit;
-      },
-    },
+      }
+    }
   },
   created() {
     if (this.id) {
@@ -44,21 +44,21 @@ export default {
     getAlumno(id) {
       this.$axios
         .get(`http://localhost:8080/alumnos/${id}`)
-        .then((response) => {
+        .then(response => {
           this.student = response.data;
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(error);
         });
     },
     save() {
       delete this.student.pagos;
       this.$axios
-        .post('http://localhost:8080/alumnos', this.student)
-        .then((response) => {
+        .post("http://localhost:8080/alumnos", this.student)
+        .then(response => {
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(error);
         });
     },
@@ -66,26 +66,26 @@ export default {
       delete this.student.pagos;
       this.$axios
         .put(`http://localhost:8080/alumnos/${this.id}`, this.student)
-        .then((response) => {
+        .then(response => {
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(error);
         });
     },
     close() {
       const id = 0;
-      this.$store.commit('notas/updateShowStudentForm', { id });
-      this.$store.commit('notas/updateShowStudentList');
+      this.$store.commit("notas/updateShowStudentForm", { id });
+      this.$store.commit("notas/updateShowStudentList");
       this.clean();
     },
     clean() {
       this.student.id = 0;
-      this.student.foto = '';
-      this.student.nombre = '';
-      this.student.apellido = '';
-      this.student.contactoEmergencia = '';
-    },
-  },
+      this.student.foto = "";
+      this.student.nombre = "";
+      this.student.apellido = "";
+      this.student.contactoEmergencia = "";
+    }
+  }
 };
 </script>

@@ -20,10 +20,13 @@
       <q-list>
         <q-item-label header>Essential Links</q-item-label>
         <q-item>
-          <router-link :to="{ name: 'home' }">Home</router-link>
+          <router-link :to="{ name: 'home' }">Inicio</router-link>
         </q-item>
         <q-item>
-          <router-link :to="{ name: 'students' }">Students</router-link>
+          <router-link :to="{ name: 'students' }">Estudiantes</router-link>
+        </q-item>
+         <q-item>
+          <router-link :to="{ name: 'academic-years' }">Grados</router-link>
         </q-item>
       </q-list>
     </q-drawer>

@@ -13,6 +13,11 @@ const routes = [
         name: 'students',
         component: () => import('pages/Students.vue'),
       },
+      {
+        path: '/academic-years',
+        name: 'academic-years',
+        component: () => import('pages/AcademicYears.vue'),
+      },
     ],
   },
 ];
