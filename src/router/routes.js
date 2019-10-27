@@ -28,6 +28,11 @@ const routes = [
         name: 'teachers',
         component: () => import('pages/Teachers.vue'),
       },
+      {
+        path: '/homeworks',
+        name: 'homeworks',
+        component: () => import('pages/Homeworks.vue'),
+      },
     ],
   },
 ];
