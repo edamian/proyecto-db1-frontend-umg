@@ -33,3 +33,12 @@ export const updateShowTeacherForm = (state, { id }) => {
 export const updateShowTeacherList = (state) => {
   state.showTeacherList = !state.showTeacherList;
 };
+
+export const updateShowHomeworkForm = (state, { id }) => {
+  state.showHomeworkForm = !state.showHomeworkForm;
+  state.homeworkToEdit = id;
+};
+
+export const updateShowHomeworkList = (state) => {
+  state.showHomeworkList = !state.showHomeworkList;
+};

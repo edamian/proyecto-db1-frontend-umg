@@ -11,4 +11,7 @@ export default {
   showTeacherForm: false,
   showTeacherList: true,
   teacherToEdit: 0,
+  showHomeworkForm: false,
+  showHomeworkList: true,
+  homeworkToEdit: 0,
 };

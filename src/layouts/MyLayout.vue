@@ -34,6 +34,9 @@
         <q-item>
           <router-link :to="{ name: 'teachers' }">Maestros</router-link>
         </q-item>
+        <q-item>
+          <router-link :to="{ name: 'homeworks' }">Tareas</router-link>
+        </q-item>
       </q-list>
     </q-drawer>
     <q-page-container>
