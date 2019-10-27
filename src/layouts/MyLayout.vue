@@ -25,8 +25,11 @@
         <q-item>
           <router-link :to="{ name: 'students' }">Estudiantes</router-link>
         </q-item>
-         <q-item>
+        <q-item>
           <router-link :to="{ name: 'academic-years' }">Grados</router-link>
+        </q-item>
+        <q-item>
+          <router-link :to="{ name: 'courses' }">Cursos</router-link>
         </q-item>
       </q-list>
     </q-drawer>
@@ -38,11 +41,11 @@
 
 <script>
 export default {
-  name: 'MyLayout',
+  name: "MyLayout",
   data() {
     return {
-      leftDrawerOpen: false,
+      leftDrawerOpen: false
     };
-  },
+  }
 };
 </script>

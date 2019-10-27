@@ -15,3 +15,12 @@ export const updateShowAcademicYearForm = (state, { id }) => {
 export const updateShowAcademicYearList = (state) => {
   state.showAcademicYearList = !state.showAcademicYearList;
 };
+
+export const updateShowCourseForm = (state, { id }) => {
+  state.showCourseForm = !state.showCourseForm;
+  state.courseToEdit = id;
+};
+
+export const updateShowCourseList = (state) => {
+  state.showCourseList = !state.showCourseList;
+};
