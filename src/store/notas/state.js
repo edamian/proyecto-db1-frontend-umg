@@ -8,4 +8,7 @@ export default {
   showCourseForm: false,
   showCourseList: true,
   courseToEdit: 0,
+  showTeacherForm: false,
+  showTeacherList: true,
+  teacherToEdit: 0,
 };

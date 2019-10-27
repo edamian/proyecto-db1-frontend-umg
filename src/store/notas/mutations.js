@@ -24,3 +24,12 @@ export const updateShowCourseForm = (state, { id }) => {
 export const updateShowCourseList = (state) => {
   state.showCourseList = !state.showCourseList;
 };
+
+export const updateShowTeacherForm = (state, { id }) => {
+  state.showTeacherForm = !state.showTeacherForm;
+  state.teacherToEdit = id;
+};
+
+export const updateShowTeacherList = (state) => {
+  state.showTeacherList = !state.showTeacherList;
+};
