@@ -4,6 +4,14 @@
     <q-form class="q-gutter-md">
       <q-input outlined v-model="teacher.nombre" label="Nombres" />
       <q-input outlined v-model="teacher.apellido" label="Apellidos" />
+      <q-select
+        outlined
+        v-model="course"
+        :options="courses"
+        label="Cursos"
+        option-value="id"
+        option-label="nombre"
+      />
       <q-btn-group outline>
         <q-btn color="primary" v-if="id == 0" label="Guardar" @click="save" />
         <q-btn color="primary" v-if="id > 0" label="Editar" @click="update" />
@@ -20,7 +28,9 @@ export default {
       teacher: {
         nombre: "",
         apellido: ""
-      }
+      },
+      courses: [],
+      course: {}
     };
   },
   computed: {
@@ -34,8 +44,19 @@ export default {
     if (this.id) {
       this.getTeacher(this.id);
     }
+    this.getCourses();
   },
   methods: {
+    getCourses() {
+      this.$axios
+        .get("http://localhost:8080/cursos")
+        .then(response => {
+          this.courses = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
     getTeacher(id) {
       this.$axios
         .get(`http://localhost:8080/maestros/${id}`)
@@ -47,7 +68,9 @@ export default {
         });
     },
     save() {
-      //delete this.teacher.pagos;
+      delete this.teacher.cursos;
+      this.teacher.id_curso = this.course.id;
+
       this.$axios
         .post("http://localhost:8080/maestros", this.teacher)
         .then(response => {
@@ -58,7 +81,7 @@ export default {
         });
     },
     update() {
-      //delete this.teacher.pagos;
+      delete this.teacher.cursos;
       this.$axios
         .put(`http://localhost:8080/maestros/${this.id}`, this.teacher)
         .then(response => {
