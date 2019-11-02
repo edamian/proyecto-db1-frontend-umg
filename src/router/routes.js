@@ -33,6 +33,11 @@ const routes = [
         name: 'homeworks',
         component: () => import('pages/Homeworks.vue'),
       },
+      {
+        path: '/asistencia/:courseId',
+        name: 'asistencia',
+        component: () => import('pages/Asistencia.vue'),
+      },
     ],
   },
 ];

@@ -5,6 +5,14 @@
       <q-input outlined v-model="student.nombre" label="Nombres" />
       <q-input outlined v-model="student.apellido" label="Apellidos" />
       <q-input outlined v-model="student.contactoEmergencia" label="Contacto emergencia" />
+      <q-select
+        outlined
+        v-model="academicYear"
+        :options="academicYears"
+        label="Anio"
+        option-value="id"
+        option-label="nombre"
+      />
       <q-btn-group outline>
         <q-btn color="primary" v-if="id == 0" label="Guardar" @click="save" />
         <q-btn color="primary" v-if="id > 0" label="Editar" @click="update" />
@@ -25,7 +33,9 @@ export default {
         nombre: "",
         apellido: "",
         contactoEmergencia: ""
-      }
+      },
+      academicYears: [],
+      academicYear: {}
     };
   },
   computed: {
@@ -39,8 +49,19 @@ export default {
     if (this.id) {
       this.getAlumno(this.id);
     }
+    this.getAcademicYears();
   },
   methods: {
+    getAcademicYears() {
+      this.$axios
+        .get(`http://localhost:8080/anios`)
+        .then(response => {
+          this.academicYears = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
     getAlumno(id) {
       this.$axios
         .get(`http://localhost:8080/alumnos/${id}`)
@@ -53,6 +74,7 @@ export default {
     },
     save() {
       delete this.student.pagos;
+      this.student.id_anio = this.academicYear.id;
       this.$axios
         .post("http://localhost:8080/alumnos", this.student)
         .then(response => {

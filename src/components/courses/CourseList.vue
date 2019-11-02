@@ -17,6 +17,7 @@
             <q-btn-group>
               <q-btn color="green" @click="addRow(props.row.id)">Editar</q-btn>
               <q-btn color="red" @click="deleteRow(props.row.id)">Eliminar</q-btn>
+              <q-btn color="blue" @click="takeCourseAssistance(props.row.id)">Tomar asistencia</q-btn>
             </q-btn-group>
           </q-td>
         </q-tr>
@@ -73,6 +74,11 @@ export default {
         .catch(error => {
           console.error(error);
         });
+    },
+    takeCourseAssistance(courseId) {
+      console.log("asistencia");
+      console.log(courseId);
+      this.$router.push({ name: "asistencia", params: { courseId: courseId } });
     }
   }
 };
