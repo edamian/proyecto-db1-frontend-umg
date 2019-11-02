@@ -74,6 +74,7 @@ export default {
         .get("http://localhost:8080/alumnos")
         .then(response => {
           this.students = response.data;
+          console.log(this.students);
         })
         .catch(error => {
           console.error(error);
